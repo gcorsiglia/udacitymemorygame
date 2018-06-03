@@ -1,13 +1,17 @@
 // Card list
 
-const cardIcons = ['fa fa-diamond', 'fa fa-diamond', 'fa fa-paper-plane-o', 'fa fa-paper-plane-o', 
-				'fa fa-anchor', 'fa fa-anchor', 'fa fa-bolt', 'fa fa-bolt', 'fa fa-cube', 
-				'fa fa-cube', 'fa fa-leaf', 'fa fa-leaf', 'fa fa-bicycle', 
-				'fa fa-bicycle', 'fa fa-bomb', 'fa fa-bomb']; 
+const cardIcons = ['fa fa-diamond', 'fa fa-diamond', 
+					'fa fa-paper-plane-o', 'fa fa-paper-plane-o', 
+					'fa fa-anchor', 'fa fa-anchor', 
+					'fa fa-bolt', 'fa fa-bolt', 
+					'fa fa-cube', 'fa fa-cube', 
+					'fa fa-leaf', 'fa fa-leaf', 
+					'fa fa-bicycle', 'fa fa-bicycle', 
+					'fa fa-bomb', 'fa fa-bomb'];
 
 /*
  * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
+ *   - shuffle cards
  *   - loop through each card and create its HTML
  *   - add each card's HTML to the page
  */
@@ -50,18 +54,58 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-// Click event
 const allCards = document.querySelectorAll('.card');
 
 let openCards = [];
+let matchCards = [];
 
+// Click event
 allCards.forEach(function(card) {
 	card.addEventListener('click', function(e) {
+		// Add open and show classes + add to open array
+
 		card.classList.add('open', 'show');
-		openCards.push(this.innerHTML);
-		console.log(openCards);
+		openCards.push(card);
+
+		// Check for match
+		if (openCards.length === 2) {
+			let firstCard = openCards[0];
+			let secondCard = openCards[1];
+			
+			if (firstCard.innerHTML === secondCard.innerHTML) {
+			// If match: add match class + add to match array; remove from open array + remove open and show classes
+
+				firstCard.classList.add('match');
+				firstCard.classList.remove('open');
+				firstCard.classList.remove('show');
+
+				secondCard.classList.add('match');
+				secondCard.classList.remove('open');
+				secondCard.classList.remove('show');
+
+				matchCards.push(firstCard);
+				matchCards.push(secondCard);
+
+				openCards = [];
+
+			} else {
+			// Else, if no match: remove open and show classes, remove from open array
+				// TODO: add time delay
+
+				firstCard.classList.remove('open');
+				firstCard.classList.remove('show');
+
+				secondCard.classList.remove('open');
+				secondCard.classList.remove('show');
+
+				openCards = [];
+			}
+		}
 	})
 })
+
+
+
 
 
 
