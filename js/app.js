@@ -78,15 +78,12 @@ allCards.forEach(function(card) {
 			// If match: add match class + add to match array; remove from open array + remove open and show classes
 
 				firstCard.classList.add('match');
-				firstCard.classList.remove('open');
-				firstCard.classList.remove('show');
+				firstCard.classList.remove('open', 'show');
 
 				secondCard.classList.add('match');
-				secondCard.classList.remove('open');
-				secondCard.classList.remove('show');
+				secondCard.classList.remove('open', 'show');
 
-				matchCards.push(firstCard);
-				matchCards.push(secondCard);
+				matchCards.push(firstCard, secondCard);
 
 				openCards = [];
 
@@ -95,8 +92,7 @@ allCards.forEach(function(card) {
 
 				setTimeout(function() {
 					for (card of openCards) {
-						card.classList.remove('open');
-						card.classList.remove('show');
+						card.classList.remove('open', 'show');
 					};
 
 					openCards = [];
@@ -106,6 +102,11 @@ allCards.forEach(function(card) {
 	})
 })
 
+function gameOver() {
+	if (matchCards.length === 16) {
+		
+	}
+}
 
 
 
