@@ -64,7 +64,7 @@ allCards.forEach(function(card) {
 	card.addEventListener('click', function(e) {
 		// Add open and show classes + add to open array
 
-		card.classList.add('open', 'show');
+		card.classList.add('open', 'show', 'disable');
 		openCards.push(card);
 
 		// Check for match
@@ -87,6 +87,9 @@ allCards.forEach(function(card) {
 
 				openCards = [];
 
+				// Check if game is over
+				gameOver();
+
 			} else {
 			// Else, if no match: remove open and show classes, remove from open array
 
@@ -94,7 +97,6 @@ allCards.forEach(function(card) {
 					for (card of openCards) {
 						card.classList.remove('open', 'show');
 					};
-
 					openCards = [];
 				}, 1000);
 			}
@@ -103,9 +105,11 @@ allCards.forEach(function(card) {
 })
 
 function gameOver() {
-	if (matchCards.length === 16) {
-		
-	}
+	setTimeout(function() {
+		if (matchCards.length === cardIcons.length) {
+		alert('GAME OVER!');
+		};
+	}, 750);
 }
 
 
