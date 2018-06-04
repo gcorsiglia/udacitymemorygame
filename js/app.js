@@ -16,15 +16,16 @@ const cardIcons = ['fa fa-diamond', 'fa fa-diamond',
  *   - add each card's HTML to the page
  */
 
- const deck = document.querySelector('.deck');
+shuffle(cardIcons);
 
- for (let i = 0; i < cardIcons.length; i++) {
- 	shuffle(cardIcons);
- 	const card = document.createElement('li');
- 	card.classList.add('card');
- 	card.innerHTML = `<i class="${cardIcons[i]}"></i>`;
- 	deck.appendChild(card);
- }
+const deck = document.querySelector('.deck');
+
+for (let i = 0; i < cardIcons.length; i++) {
+	const card = document.createElement('li');
+	card.classList.add('card');
+	card.innerHTML = `<i class="${cardIcons[i]}"></i>`;
+	deck.appendChild(card);
+}
 
 // Shuffle function from http://stackoverflow.com/a/2450976
 function shuffle(array) {
@@ -41,7 +42,6 @@ function shuffle(array) {
 
     return array;
 }
-
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -69,6 +69,8 @@ allCards.forEach(function(card) {
 
 		// Check for match
 		if (openCards.length === 2) {
+			// TODO: prevent same card from being clicked twice and matching with itself
+
 			let firstCard = openCards[0];
 			let secondCard = openCards[1];
 			
@@ -90,19 +92,21 @@ allCards.forEach(function(card) {
 
 			} else {
 			// Else, if no match: remove open and show classes, remove from open array
-				// TODO: add time delay
 
-				firstCard.classList.remove('open');
-				firstCard.classList.remove('show');
+				setTimeout(function() {
+					for (card of openCards) {
+						card.classList.remove('open');
+						card.classList.remove('show');
+					};
 
-				secondCard.classList.remove('open');
-				secondCard.classList.remove('show');
-
-				openCards = [];
+					openCards = [];
+				}, 1000);
 			}
 		}
 	})
 })
+
+
 
 
 
