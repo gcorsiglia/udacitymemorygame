@@ -72,7 +72,7 @@ allCards.forEach(function(card) {
 		// Check for match
 		isMatching(firstCard, secondCard);
 
-		// Increment move counter
+		// TODO: Increment move counter
 	})
 })
 
