@@ -1,12 +1,12 @@
 // Card list
 
-const cardIcons = ['fa fa-diamond', 'fa fa-diamond', 
-					'fa fa-paper-plane-o', 'fa fa-paper-plane-o', 
+const cardIcons = ['fa fa-diamond', 'fa fa-diamond',
+					'fa fa-paper-plane-o', 'fa fa-paper-plane-o',
 					'fa fa-anchor', 'fa fa-anchor', 
 					'fa fa-bolt', 'fa fa-bolt', 
 					'fa fa-cube', 'fa fa-cube', 
-					'fa fa-leaf', 'fa fa-leaf', 
-					'fa fa-bicycle', 'fa fa-bicycle', 
+					'fa fa-leaf', 'fa fa-leaf',
+					'fa fa-bicycle', 'fa fa-bicycle',
 					'fa fa-bomb', 'fa fa-bomb'];
 
 /*
@@ -60,49 +60,60 @@ let openCards = [];
 let matchCards = [];
 
 // Click event
+// TODO: use event.target for deck
 allCards.forEach(function(card) {
 	card.addEventListener('click', function(e) {
 		// Add open and show classes + add to open array
+		open(card);
 
-		card.classList.add('open', 'show', 'disable');
-		openCards.push(card);
+		let firstCard = openCards[0];
+		let secondCard = openCards[1];
 
 		// Check for match
-		if (openCards.length === 2) {
-			// TODO: prevent same card from being clicked twice and matching with itself
+		isMatching(firstCard, secondCard);
 
-			let firstCard = openCards[0];
-			let secondCard = openCards[1];
-			
-			if (firstCard.innerHTML === secondCard.innerHTML) {
-			// If match: add match class + add to match array; remove from open array + remove open and show classes
-
-				firstCard.classList.add('match');
-				firstCard.classList.remove('open', 'show');
-
-				secondCard.classList.add('match');
-				secondCard.classList.remove('open', 'show');
-
-				matchCards.push(firstCard, secondCard);
-
-				openCards = [];
-
-				// Check if game is over
-				gameOver();
-
-			} else {
-			// Else, if no match: remove open and show classes, remove from open array
-
-				setTimeout(function() {
-					for (card of openCards) {
-						card.classList.remove('open', 'show');
-					};
-					openCards = [];
-				}, 1000);
-			}
-		}
+		// Increment move counter
 	})
 })
+
+function open(card) {
+	card.classList.add('open', 'show', 'disable');
+	openCards.push(card);
+}
+
+function isMatching(firstCard, secondCard) {
+	if (openCards.length === 2) {
+		if (firstCard.innerHTML === secondCard.innerHTML) {
+		// If match: add match class + add to match array; remove from open array + remove open and show classes
+
+			firstCard.classList.add('match');
+			firstCard.classList.remove('open', 'show');
+
+			secondCard.classList.add('match');
+			secondCard.classList.remove('open', 'show');
+
+			matchCards.push(firstCard, secondCard);
+
+			openCards = [];
+
+			// Check if game is over
+			gameOver();
+
+		} else {
+		// Else, if no match: remove open and show classes, remove from open array
+			setTimeout(function() {
+				for (card of openCards) {
+					card.classList.remove('open', 'show', 'disable');
+				};
+				openCards = [];
+			}, 1000);
+		}
+	}
+}
+
+function moveCount() {
+
+}
 
 function gameOver() {
 	setTimeout(function() {
@@ -111,10 +122,3 @@ function gameOver() {
 		};
 	}, 750);
 }
-
-
-
-
-
-
-
