@@ -116,9 +116,10 @@ function moveCount() {
 }
 
 function gameOver() {
+	const winner = document.getElementById('winner');
 	setTimeout(function() {
 		if (matchCards.length === cardIcons.length) {
-		alert('GAME OVER!');
+			winner.style.display = 'block';
 		};
 	}, 750);
 }
