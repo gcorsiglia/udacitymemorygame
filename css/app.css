@@ -134,10 +134,13 @@ h1 {
     padding: 20px;
     border: 1px solid #888;
     width: 90%;
-    font-size: 1.2rem;
     display: flex;
     flex-direction: column;
     text-align: center;
+}
+
+.win-msg {
+    font-size: 1.2rem;
 }
 
 .button {
