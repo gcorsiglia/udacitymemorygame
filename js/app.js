@@ -51,8 +51,9 @@ function shuffle(array) {
 function clickCard(card) {
 	card.addEventListener('click', function() {
 		// Add open and show classes + add to open array
-		
-		open(card);
+		if (openCards.length <= 1) {
+			open(card);
+		}
 		
 		let firstCard = openCards[0];
 		let secondCard = openCards[1];
