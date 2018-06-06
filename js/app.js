@@ -9,22 +9,19 @@ const cardIcons = ['fa fa-diamond', 'fa fa-diamond',
 					'fa fa-bicycle', 'fa fa-bicycle',
 					'fa fa-bomb', 'fa fa-bomb'];
 
-/*
- * Display the cards on the page
- *   - shuffle cards
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
-
-shuffle(cardIcons);
-
 const deck = document.querySelector('.deck');
 
-for (let i = 0; i < cardIcons.length; i++) {
-	const card = document.createElement('li');
-	card.classList.add('card');
-	card.innerHTML = `<i class="${cardIcons[i]}"></i>`;
-	deck.appendChild(card);
+function initGame() {
+	shuffle(cardIcons);
+
+	for (let i = 0; i < cardIcons.length; i++) {
+		const card = document.createElement('li');
+		card.classList.add('card');
+		card.innerHTML = `<i class="${cardIcons[i]}"></i>`;
+		deck.appendChild(card);
+
+		click(card);
+	}
 }
 
 // Shuffle function from http://stackoverflow.com/a/2450976
@@ -54,15 +51,15 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
-const allCards = document.querySelectorAll('.card');
-
 let openCards = [];
 let matchCards = [];
 
-// Click event
-// TODO: use event.target for deck
-allCards.forEach(function(card) {
-	card.addEventListener('click', function(e) {
+/*
+ * Click event
+ */
+	// TODO: use event.target for deck?
+function click(card) {
+	card.addEventListener('click', function() {
 		// Add open and show classes + add to open array
 		open(card);
 
@@ -74,13 +71,19 @@ allCards.forEach(function(card) {
 
 		// TODO: Increment move counter
 	})
-})
+}
 
+/*
+ * Open and show card
+ */
 function open(card) {
 	card.classList.add('open', 'show', 'disable');
 	openCards.push(card);
 }
 
+/*
+ * Check for matches
+ */
 function isMatching(firstCard, secondCard) {
 	if (openCards.length === 2) {
 		if (firstCard.innerHTML === secondCard.innerHTML) {
@@ -111,15 +114,38 @@ function isMatching(firstCard, secondCard) {
 	}
 }
 
+/*
+ * Count moves
+ */
 function moveCount() {
 
 }
 
+/*
+ * Check if game is over
+ */
 function gameOver() {
 	const winner = document.getElementById('winner');
 	setTimeout(function() {
 		if (matchCards.length === cardIcons.length) {
 			winner.style.display = 'block';
+			// TODO: add moves, starScore, playTime values to msg
 		};
 	}, 750);
 }
+
+/*
+ * Restart button
+ */
+ const restart = document.querySelector('.restart');
+ restart.addEventListener('click', function() {
+ 	deck.innerHTML = "";
+
+ 	initGame();
+
+ 	matchCards = [];
+ 	openCards = [];
+ })
+
+///// START GAME
+ initGame();
