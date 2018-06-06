@@ -1,5 +1,4 @@
 // Card list
-
 const cardIcons = ['fa fa-diamond', 'fa fa-diamond',
 					'fa fa-paper-plane-o', 'fa fa-paper-plane-o',
 					'fa fa-anchor', 'fa fa-anchor', 
@@ -59,8 +58,6 @@ function clickCard(card) {
 
 		// Check for match
 		isMatching(firstCard, secondCard);
-
-		// TODO: Increment move counter
 	})
 }
 
@@ -102,13 +99,30 @@ function isMatching(firstCard, secondCard) {
 				openCards = [];
 			}, 1000);
 		}
+
+		// Increment move counter
+		moveCount();
 	}
 }
 
 /*
  * Count moves
  */
+let moves = 0;
 function moveCount() {
+	moves++
+	let moveDisplay = document.querySelector('.moves');
+	moveDisplay.innerText = moves
+}
+
+/*
+ * Star rating
+ */
+
+/*
+ * Timer
+ */
+function timer () {
 
 }
 
@@ -128,18 +142,18 @@ function gameOver() {
 /*
  * Restart button
  */
- const restart = document.querySelector('.restart');
- restart.addEventListener('click', function() {
- 	deck.innerHTML = "";
+const restart = document.querySelector('.restart');
+restart.addEventListener('click', function() {
+	deck.innerHTML = "";
 
- 	initGame();
+	initGame();
 
- 	matchCards = [];
- 	openCards = [];
- })
+	matchCards = [];
+	openCards = [];
+})
 
 ///// START GAME
- initGame();
+initGame();
 
 /*
  * X set up the event listener for a card. If a card is clicked:
