@@ -51,8 +51,9 @@ function shuffle(array) {
 function clickCard(card) {
 	card.addEventListener('click', function() {
 		// Add open and show classes + add to open array
+		
 		open(card);
-
+		
 		let firstCard = openCards[0];
 		let secondCard = openCards[1];
 
@@ -65,8 +66,8 @@ function clickCard(card) {
  * Open and show card
  */
 function open(card) {
-	card.classList.add('open', 'show', 'disable');
 	openCards.push(card);
+	card.classList.add('open', 'show', 'disable');
 }
 
 /*
@@ -108,11 +109,11 @@ function isMatching(firstCard, secondCard) {
 /*
  * Count moves
  */
+const moveDisplay = document.querySelector('.moves');
 let moves = 0;
 function moveCount() {
-	moves++
-	let moveDisplay = document.querySelector('.moves');
-	moveDisplay.innerText = moves
+	moves++;
+	moveDisplay.innerText = moves;
 }
 
 /*
@@ -142,9 +143,12 @@ function gameOver() {
 /*
  * Restart button
  */
+ 	// TODO: turn restart action into function to use with play again button
 const restart = document.querySelector('.restart');
 restart.addEventListener('click', function() {
 	deck.innerHTML = "";
+	
+	moveDisplay.innerText = 0;
 
 	initGame();
 
