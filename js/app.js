@@ -118,6 +118,9 @@ let moves = 0;
 function moveCount() {
 	moves++;
 	moveDisplay.innerText = moves;
+
+	// Check star rating
+	rating();
 }
 
 /*
@@ -125,7 +128,26 @@ function moveCount() {
  */
 let stars = 3;
 
+function rating() {
+	const starOne = document.getElementById('starOne');
+	const starTwo = document.getElementById('starTwo');
+	const starThree = document.getElementById('starThree');
 
+	switch(moves) {
+		case 9:
+			stars = 2;
+			starOne.style.display = 'none';
+			break;
+		case 18:
+			stars = 1;
+			starTwo.style.display = 'none';
+			break;
+		case 27:
+			stars = 0;
+			starThree.style.display = 'none';
+			break;
+	}
+}
 
 /*
  * Timer
@@ -140,14 +162,16 @@ function timer () {
 const winner = document.getElementById('winner');
 
 function gameOver() {
-	const totalMoves = document.getElementById('moves');
-	const starScore = document.getElementById('starScore');
-	const playTime = document.getElementById('playTime');
+	const totalMoves = document.querySelector('#moves');
+	const starScore = document.querySelector('#starScore');
+	const playTime = document.querySelector('#playTime');
 
 	setTimeout(function() {
 		if (matchCards.length === cardIcons.length) {
+			// Display winning msg
 			winner.style.display = 'block';
-			
+
+			// Update stats
 			totalMoves.innerText = moves;
 			starScore.innerText = stars;
 			playTime.innerText = time;
@@ -168,8 +192,6 @@ playAgain.addEventListener('click', function() {
 /*
  * Restart game
  */
-const restart = document.querySelector('.restart');
-
 function restartGame() {
 	deck.innerHTML = "";
 	
@@ -182,6 +204,7 @@ function restartGame() {
 	openCards = [];
 }
 
+const restart = document.querySelector('.restart');
 restart.addEventListener('click', function() {
 	restartGame(); 
 })
