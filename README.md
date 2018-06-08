@@ -2,19 +2,19 @@
 
 ## Table of Contents
 
-* [Instructions](#instructions)
-* [Contributing](#contributing)
+* [Description](#description)
+* [Dependencies] (#dependencies)
 
-## Instructions
+## Description
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This web-based game is based on the mechanics and rules of the card game Concentration. Users will click cards to find  matching pairs. There are 16 cards in total with 8 matching pairs. The user wins when they have successfully matched all 8 pairs.
 
-To get started, open `js/app.js` and start building out the app's functionality
+Ways I plan to improve this project:
+    * Add more unique styling to the cards and background
+    * Add animations to successful and unsuccessful matches
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+## Dependencies
 
-## Contributing
+Card icons are from Font Awesome. Otherwise, there are no special dependencies. 
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
