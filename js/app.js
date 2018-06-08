@@ -128,11 +128,12 @@ function moveCount() {
  */
 let stars = 3;
 
-function rating() {
-	const starOne = document.getElementById('starOne');
-	const starTwo = document.getElementById('starTwo');
-	const starThree = document.getElementById('starThree');
+const starOne = document.getElementById('starOne');
+const starTwo = document.getElementById('starTwo');
+const starThree = document.getElementById('starThree');
 
+function rating() {
+	// Decrease star rating by 1 after n moves
 	switch(moves) {
 		case 9:
 			stars = 2;
@@ -180,16 +181,6 @@ function gameOver() {
 }
 
 /*
- * Play again button
- */
-const playAgain = document.querySelector('#playAgain');
-
-playAgain.addEventListener('click', function() {
-	winner.style.display = 'none';
-	restartGame(); 
-})
-
-/*
  * Restart game
  */
 function restartGame() {
@@ -198,14 +189,27 @@ function restartGame() {
 	moves = 0;
 	moveDisplay.innerText = 0;
 
-	initGame();
+	stars = 3
+	starOne.style.display = 'inline-block';
+	starTwo.style.display = 'inline-block';
+	starThree.style.display = 'inline-block';
 
 	matchCards = [];
 	openCards = [];
+
+	initGame();
 }
 
+// Restart button
 const restart = document.querySelector('.restart');
 restart.addEventListener('click', function() {
+	restartGame(); 
+})
+
+// Play again button
+const playAgain = document.querySelector('#playAgain');
+playAgain.addEventListener('click', function() {
+	winner.style.display = 'none';
 	restartGame(); 
 })
 
