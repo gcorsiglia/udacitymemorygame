@@ -16,13 +16,19 @@
         </header>
 
         <section class="score-panel">
-        	<ul class="stars">
-        		<li id="starOne"><i class="fa fa-star"></i></li>
-        		<li id="starTwo"><i class="fa fa-star"></i></li>
-        		<li id="starThree"><i class="fa fa-star"></i></li>
-        	</ul>
+        	<div class="score__moves">
+                <ul class="stars">
+        		  <li id="starOne"><i class="fa fa-star"></i></li>
+        		  <li id="starTwo"><i class="fa fa-star"></i></li>
+        		  <li id="starThree"><i class="fa fa-star"></i></li>
+        	   </ul>
 
-        	<span class="moves">0</span> Moves
+        	   <span class="moves">0</span> Moves
+            </div>
+
+            <div class="score__timer">
+                Playing Time: <span class="timer">0</span> seconds
+            </div>
 
             <div class="restart">
         		<i class="fa fa-repeat"></i>
@@ -36,7 +42,7 @@
         <div class="win-content">
             <h1>Congratulations! You win!</h1>
             <span class="win-msg">
-            You won the game in <span id="moves">x</span> moves and with <span id="starScore">x</span> stars. It took you <span id="playTime">x</span> to finish the game.</span>
+            You won the game in <span id="moves"></span> moves with <span id="starScore"></span> stars and it took you <span id="playTime"></span> seconds to finish the game.</span>
             <button id="playAgain" class="button">Play again</button>
         </div>
     </div>

@@ -100,6 +100,7 @@ function isMatching(firstCard, secondCard) {
 				for (card of openCards) {
 					card.classList.remove('open', 'show', 'disable');
 				};
+
 				openCards = [];
 			}, 1000);
 		}
@@ -113,6 +114,7 @@ function isMatching(firstCard, secondCard) {
  * Count moves
  */
 const moveDisplay = document.querySelector('.moves');
+
 let moves = 0;
 
 function moveCount() {
@@ -126,11 +128,11 @@ function moveCount() {
 /*
  * Star rating
  */
-let stars = 3;
-
 const starOne = document.getElementById('starOne');
 const starTwo = document.getElementById('starTwo');
 const starThree = document.getElementById('starThree');
+
+let stars = 3;
 
 function rating() {
 	// Decrease star rating by 1 after n moves
@@ -153,9 +155,15 @@ function rating() {
 /*
  * Timer
  */
-function timer () {
+const timeDisplay = document.querySelector('.timer');
 
-}
+let time = 0;
+
+setInterval(function() {
+	time++;
+	timeDisplay.innerText = time;
+
+}, 1000);
 
 /*
  * Check if game is over
@@ -187,12 +195,15 @@ function restartGame() {
 	deck.innerHTML = "";
 	
 	moves = 0;
-	moveDisplay.innerText = 0;
+	moveDisplay.innerText = moves;
 
 	stars = 3
 	starOne.style.display = 'inline-block';
 	starTwo.style.display = 'inline-block';
 	starThree.style.display = 'inline-block';
+
+	time = 0
+	timeDisplay.innerText = time;
 
 	matchCards = [];
 	openCards = [];

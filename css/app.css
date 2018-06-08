@@ -93,6 +93,13 @@ h1 {
     text-align: left;
     width: 345px;
     margin-bottom: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.score-panel .score__moves {
+    display: inline-block;
 }
 
 .score-panel .stars {
@@ -104,6 +111,10 @@ h1 {
 
 .score-panel .stars li {
     list-style: none;
+    display: inline-block;
+}
+
+.score-panel .score__timer {
     display: inline-block;
 }
 
