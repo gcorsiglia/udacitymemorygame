@@ -30,7 +30,8 @@ body {
 
 h1 {
     font-family: 'Open Sans', sans-serif;
-    font-weight: 300;
+    font-weight: 400;
+    text-align: center;
 }
 
 /*
@@ -89,13 +90,22 @@ h1 {
  * Styles for the Score Panel
  */
 
+.bg-color {
+    background-color: rgba(77, 177, 167, 0.8);
+    border-radius: 8px;
+    margin: 10px auto;
+    box-shadow: 6px 7px 15px 0 rgba(46, 61, 73, 0.5);
+}
+
 .score-panel {
     text-align: left;
-    width: 345px;
+    width: 660px;
+    height: 30px;
     margin-bottom: 10px;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
+    align-items: center;
 }
 
 .score-panel .score__moves {
@@ -139,7 +149,7 @@ h1 {
     background-color: rgba(0,0,0,0.4);
 }
 
-.win-content {
+.win-modal .win-content {
     background-color: #fff;
     margin: 20% auto;
     padding: 20px;
@@ -154,7 +164,7 @@ h1 {
     font-size: 1.2rem;
 }
 
-.button {
+.win-modal .buttnon {
     background: #02ccba;
     font-family: 'Open Sans', sans-serif;
     font-size: 1.5rem;
@@ -162,4 +172,5 @@ h1 {
     margin: 1rem auto;
     border-radius: 4px;
     text-transform: uppercase;
+    cursor: pointer;
 }
