@@ -50,7 +50,7 @@ function shuffle(array) {
 	// TODO: use event.target for deck?
 function clickCard(card) {
 	card.addEventListener('click', function() {
-		// Add open and show classes + add to open array
+		// Show card
 		if (openCards.length <= 1) {
 			open(card);
 		}
@@ -67,6 +67,7 @@ function clickCard(card) {
  * Open and show card
  */
 function open(card) {
+	// Add to open array + open and show classes to card
 	openCards.push(card);
 	card.classList.add('open', 'show', 'disable');
 }
@@ -77,7 +78,7 @@ function open(card) {
 function isMatching(firstCard, secondCard) {
 	if (openCards.length === 2) {
 		if (firstCard.innerHTML === secondCard.innerHTML) {
-		// If match: add match class + add to match array; remove from open array + remove open and show classes
+		// If match: add match class and remove open and show classes + add cards to match array
 
 			firstCard.classList.add('match');
 			firstCard.classList.remove('open', 'show');
@@ -87,13 +88,14 @@ function isMatching(firstCard, secondCard) {
 
 			matchCards.push(firstCard, secondCard);
 
+			// Empty open array
 			openCards = [];
 
 			// Check if game is over
 			gameOver();
 
 		} else {
-		// Else, if no match: remove open and show classes, remove from open array
+		// Else, if no match: remove open and show classes + empty open array
 			setTimeout(function() {
 				for (card of openCards) {
 					card.classList.remove('open', 'show', 'disable');
@@ -112,6 +114,7 @@ function isMatching(firstCard, secondCard) {
  */
 const moveDisplay = document.querySelector('.moves');
 let moves = 0;
+
 function moveCount() {
 	moves++;
 	moveDisplay.innerText = moves;
@@ -120,6 +123,9 @@ function moveCount() {
 /*
  * Star rating
  */
+let stars = 3;
+
+
 
 /*
  * Timer
@@ -131,42 +137,54 @@ function timer () {
 /*
  * Check if game is over
  */
+const winner = document.getElementById('winner');
+
 function gameOver() {
-	const winner = document.getElementById('winner');
+	const totalMoves = document.getElementById('moves');
+	const starScore = document.getElementById('starScore');
+	const playTime = document.getElementById('playTime');
+
 	setTimeout(function() {
 		if (matchCards.length === cardIcons.length) {
 			winner.style.display = 'block';
-			// TODO: add moves, starScore, playTime values to msg
+			
+			totalMoves.innerText = moves;
+			starScore.innerText = stars;
+			playTime.innerText = time;
 		};
 	}, 750);
 }
 
 /*
- * Restart button
+ * Play again button
  */
- 	// TODO: turn restart action into function to use with play again button
+const playAgain = document.querySelector('#playAgain');
+
+playAgain.addEventListener('click', function() {
+	winner.style.display = 'none';
+	restartGame(); 
+})
+
+/*
+ * Restart game
+ */
 const restart = document.querySelector('.restart');
-restart.addEventListener('click', function() {
+
+function restartGame() {
 	deck.innerHTML = "";
 	
+	moves = 0;
 	moveDisplay.innerText = 0;
 
 	initGame();
 
 	matchCards = [];
 	openCards = [];
+}
+
+restart.addEventListener('click', function() {
+	restartGame(); 
 })
 
-///// START GAME
+///////// START GAME
 initGame();
-
-/*
- * X set up the event listener for a card. If a card is clicked:
- *  X - display the card's symbol (put this functionality in another function that you call from this one)
- *  X - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  X - if the list already has another card, check to see if the two cards match
- *    X + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    X + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    X + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
