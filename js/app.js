@@ -107,6 +107,12 @@ function isMatching(firstCard, secondCard) {
 
 		// Increment move counter
 		moveCount();
+
+		// Start timer after first move
+		if (moves === 1) {
+			start = true;
+			timer();
+		}
 	}
 }
 
@@ -155,15 +161,20 @@ function rating() {
 /*
  * Timer
  */
+ 	// TODO: timer starts at first click; stop timer when win occurs; reset timer at click
 const timeDisplay = document.querySelector('.timer');
 
 let time = 0;
 
-setInterval(function() {
-	time++;
-	timeDisplay.innerText = time;
+function timer() {
+	if (start === true) {
+		setInterval(function() {
+			time++;
+			timeDisplay.innerText = time;
 
-}, 1000);
+		}, 1000);
+	}
+}
 
 /*
  * Check if game is over
@@ -202,6 +213,7 @@ function restartGame() {
 	starTwo.style.display = 'inline-block';
 	starThree.style.display = 'inline-block';
 
+	start = false;
 	time = 0
 	timeDisplay.innerText = time;
 
