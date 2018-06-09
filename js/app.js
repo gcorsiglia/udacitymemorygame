@@ -50,6 +50,8 @@ function shuffle(array) {
 	// TODO: use event.target for deck?
 function clickCard(card) {
 	card.addEventListener('click', function() {
+		startTimer();
+
 		// Show card
 		if (openCards.length <= 1) {
 			open(card);
@@ -107,12 +109,6 @@ function isMatching(firstCard, secondCard) {
 
 		// Increment move counter
 		moveCount();
-
-		// Start timer after first move
-		if (moves === 1) {
-			start = true;
-			timer();
-		}
 	}
 }
 
@@ -120,7 +116,6 @@ function isMatching(firstCard, secondCard) {
  * Count moves
  */
 const moveDisplay = document.querySelector('.moves');
-
 let moves = 0;
 
 function moveCount() {
@@ -137,7 +132,6 @@ function moveCount() {
 const starOne = document.getElementById('starOne');
 const starTwo = document.getElementById('starTwo');
 const starThree = document.getElementById('starThree');
-
 let stars = 3;
 
 function rating() {
@@ -161,20 +155,28 @@ function rating() {
 /*
  * Timer
  */
- 	// TODO: timer starts at first click; stop timer when win occurs; reset timer at click
 const timeDisplay = document.querySelector('.timer');
-
 let time = 0;
+let gameTimer;
+let timerRunning = false;
 
-function timer() {
-	if (start === true) {
-		setInterval(function() {
+function startTimer() {
+	if (!timerRunning) {
+		timerRunning = true;
+		gameTimer = setInterval(function () {
 			time++;
 			timeDisplay.innerText = time;
-
 		}, 1000);
 	}
 }
+
+function stopTimer() {
+	if (timerRunning) {
+		timerRunning = false;
+		clearInterval(gameTimer);
+	}	
+}
+
 
 /*
  * Check if game is over
@@ -195,6 +197,8 @@ function gameOver() {
 			totalMoves.innerText = moves;
 			starScore.innerText = stars;
 			playTime.innerText = time;
+
+			stopTimer();
 		};
 	}, 750);
 }
@@ -213,10 +217,11 @@ function restartGame() {
 	starTwo.style.display = 'inline-block';
 	starThree.style.display = 'inline-block';
 
-	start = false;
-	time = 0
+	stopTimer();
+	time = 0;
 	timeDisplay.innerText = time;
-
+	clearInterval(gameTimer);
+	
 	matchCards = [];
 	openCards = [];
 
