@@ -142,23 +142,18 @@ function moveCount() {
  */
 const starOne = document.getElementById("starOne");
 const starTwo = document.getElementById("starTwo");
-const starThree = document.getElementById("starThree");
 let stars = 3;
 
 function rating() {
   // Decrease star rating by 1 after n moves
   switch (moves) {
-    case 10:
+    case 14:
       stars = 2;
       starOne.style.display = "none";
       break;
-    case 20:
+    case 28:
       stars = 1;
       starTwo.style.display = "none";
-      break;
-    case 30:
-      stars = 0;
-      starThree.style.display = "none";
       break;
   }
 }
