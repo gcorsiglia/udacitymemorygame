@@ -195,8 +195,12 @@ function gameOver() {
 
 			// Update stats
 			totalMoves.innerText = moves;
-			starScore.innerText = stars;
 			playTime.innerText = time;
+			if (stars === 1) {
+				starScore.innerText = `${stars} star`;
+			} else {
+				starScore.innerText = `${stars} stars`;
+			};
 
 			stopTimer();
 		};

@@ -34,6 +34,14 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: 300;
+    text-align: center;
+    margin-top: 0;
+    padding-top: 0;
+}
+
 /*
  * Styles for the deck of cards
  */
