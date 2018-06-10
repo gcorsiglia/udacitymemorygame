@@ -1,60 +1,63 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-    <meta charset="utf-8">
-    <title>Matching Game</title>
-    <meta name="description" content="">
-    <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
-    <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
-    <link rel="stylesheet" href="css/app.css">
+  <meta charset="utf-8">
+  <title>Matching Game</title>
+  <meta name="description" content="">
+  <link rel="stylesheet prefetch" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
+  <link rel="stylesheet prefetch" href="https://fonts.googleapis.com/css?family=Coda">
+  <link rel="stylesheet" href="css/app.css">
 </head>
+
 <body>
 
-    <div class="container">
-        <div class="bg-color">
-            <header>
-                <h1>Matching Game</h1>
-            </header>
+  <div class="container">
+    <div class="bg-color">
+      <header>
+        <h1>Matching Game</h1>
+      </header>
 
-            <section class="score-panel">
-            	<div class="score__moves">
-                    <ul class="stars">
-            		  <li id="starOne"><i class="fa fa-star"></i></li>
-            		  <li id="starTwo"><i class="fa fa-star"></i></li>
-            		  <li id="starThree"><i class="fa fa-star"></i></li>
-            	   </ul>
+      <section class="score-panel">
+        <div class="score__moves">
+          <ul class="stars">
+            <li id="starOne"><i class="fa fa-star"></i></li>
+            <li id="starTwo"><i class="fa fa-star"></i></li>
+            <li id="starThree"><i class="fa fa-star"></i></li>
+          </ul>
 
-                	<div class="moves-container">
-                        <span class="moves">0</span> Moves
-                    </div>
-                </div>
-
-                <div class="score__timer">
-                    Playing Time: 
-                    <div class="time-container">
-                        <span class="timer">0</span> seconds
-                    </div>
-                </div>
-
-                <div class="restart">
-            		<i class="fa fa-repeat"></i>
-            	</div>
-            </section>
+          <div class="moves-container">
+            <span class="moves">0</span> Moves
+          </div>
         </div>
 
-        <ul class="deck"></ul>
+        <div class="score__timer">
+          Playing Time:
+          <div class="time-container">
+            <span class="timer">0</span> seconds
+          </div>
+        </div>
+
+        <div class="restart">
+          <i class="fa fa-repeat"></i>
+        </div>
+      </section>
     </div>
 
-    <div id="winner" class="win-modal">
-        <div class="win-content">
-            <h1>Congratulations! You win!</h1>
-            <span class="win-msg">
+    <ul class="deck"></ul>
+  </div>
+
+  <div id="winner" class="win-modal">
+    <div class="win-content">
+      <h1>Congratulations! You win!</h1>
+      <div class="win-msg">
                 <h2>You've earned <span id="starScore"></span>!</h2>
-            You won the game in <span id="playTime"></span> seconds using <span id="moves"></span> moves.</span>
-            <button id="playAgain" class="button">Play again</button>
-        </div>
+      You won the game in <span id="playTime"></span> seconds using <span id="moves"></span> moves.</div>
+      <button id="playAgain" class="button">Play again</button>
     </div>
+  </div>
 
-    <script src="js/app.js"></script>
+  <script src="js/app.js"></script>
 </body>
+
 </html>
