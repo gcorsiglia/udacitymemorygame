@@ -137,15 +137,15 @@ let stars = 3;
 function rating() {
 	// Decrease star rating by 1 after n moves
 	switch(moves) {
-		case 9:
+		case 10:
 			stars = 2;
 			starOne.style.display = 'none';
 			break;
-		case 18:
+		case 20:
 			stars = 1;
 			starTwo.style.display = 'none';
 			break;
-		case 27:
+		case 30:
 			stars = 0;
 			starThree.style.display = 'none';
 			break;
